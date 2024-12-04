@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import fr from "../locales/fr.json";
-import ar from "../locales/ar.json";
+import fr from "../locales/header/fr.json";
+import ar from "../locales/header/ar.json";
 
 const Contact = ({ language }) => {
 	const content = language === "fr" ? fr : ar;
@@ -18,7 +18,7 @@ const Contact = ({ language }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    alert("Thank you for contacting us!");
+    alert("{content.thankForContact}");
     setFormData({ name: "", email: "", message: "" }); // Reset form
   };
 
@@ -80,16 +80,14 @@ const Contact = ({ language }) => {
             cursor: "pointer",
           }}
         >
-          Submit
+          {content.submit}
         </button>
       </form>
 
       <div style={{ marginTop: "20px", textAlign: "center" }}>
-        <h3>Our Address</h3>
-        <p>123 Auto Parts Street</p>
-        <p>Casablanca, Morocco</p>
-        <p>Phone: +212 123 456 789</p>
-        <p>Email: support@autoparts.com</p>
+        <p>{content.companyAdresse}</p>
+        <p>Phone:{content.companyPhone}</p>
+        <p>Email: {content.companyEmail}</p>
       </div>
     </div>
   );

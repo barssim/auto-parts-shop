@@ -15,6 +15,8 @@ const Footer = ({ language, toggleLanguage }) => {
                {content.companyAdresse}
                <br />
                Phone: {content.companyPhone}
+               <br />
+               Email: {content.companyEmail}
            </address>
        </footer>
    );

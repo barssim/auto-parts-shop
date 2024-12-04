@@ -1,6 +1,6 @@
 import React from 'react';
-import fr from "../locales/fr.json";
-import ar from "../locales/ar.json";
+import fr from "../locales/header/fr.json";
+import ar from "../locales/header/ar.json";
 
 const Header = ({ language, toggleLanguage }) => {
 	const content = language === "fr" ? fr : ar;

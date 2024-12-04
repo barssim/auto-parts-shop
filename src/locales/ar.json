@@ -1,7 +1,7 @@
 {
 	"whatWeDo":"بيع وتوزيع قطع هياكل السيارات",
 	"whatYouFind": "كل انواع هياكل السيارات الجديد",
-	"about": "استعلامات",
+
 	"whoAreWe": "من نحن؟",
 	"connection": "دخول",
 	"registration": "تسجيل",
@@ -38,14 +38,10 @@
 	"article":  "سلعة",
 	"please_login":  "يرجى تسجيل الدخول حتى تتمكن من طلب السلعة",
 	"successfully_logged_out":  "لقد تم تسجيل خروجك بنجاح",
-	"home": "الرئيسية",
 	
-	"contactUs": "اتصل بنا",
-	"contact": "اتصال",
 	
 	"services": "خدمات",
 	"not_possible_to_change_reserved_article":  "ليس لديك إمكانية تغيير سلعة محجوزة.",
-	"rigths_reserved": "جميع الحقوق محفوظة.",
-	"group_solide": "solide مجموعة:"
+	"rigths_reserved": "جميع الحقوق محفوظة."
 
 }

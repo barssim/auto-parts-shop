@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../cssFiles/styles.css';
-import fr from "../locales/fr.json";
-import ar from "../locales/ar.json";
+import fr from "../locales/header/fr.json";
+import ar from "../locales/header/ar.json";
 
 const About = ({ language }) => {
 	const content = language === "fr" ? fr : ar;

@@ -1,7 +1,7 @@
 {
 	"whatWeDo":"Vente de Carrosserie d'automobile",
 	"whatYouFind": "Vous trouvez ici toutes sorte de carrosserie pour votre automobile.",
-	"about": "Apropos",
+	
 	"whoAreWe": "Qui sommes-nous?",
 	"connection": "Connection",
 	"registration": "Inscription",
@@ -38,14 +38,12 @@
 	"article":  "Article",
 	"please_login":  "Veuillez se connect&eacute afin de pouvoir commander l'article",
 	"successfully_logged_out":  "Vous étes deconnect&eacute avec succ&eacutes",
-	"home": "Home",
+	
 	
 
-	"contact": "Contact",
-	"contactUs": "Contacter nous:",
+	
 	
 	"services": "Services",
 	"not_possible_to_change_reserved_article":  "Vous n'avez pas la possibilit&eacute de changer une pi&egravece d&eacutej&agrave r&eacuteserv&eacute.",
-	"rigths_reserved": "Tous droits réservés.",
-	"group_solide": "Le groupe solide:"
+	"rigths_reserved": "Tous droits réservés."
 }
