@@ -8,8 +8,8 @@ const Footer = ({ language, toggleLanguage }) => {
        <footer>
            <p>&copy; 2024 {content.companyName}</p>
            <div>
-               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+               <a href={content.facebook_link} target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>Facebook</a>
+               <a href={content.twitter_link} target="_blank" rel="noopener noreferrer">Twitter</a>
            </div>
            <address>
                {content.companyAdresse}
