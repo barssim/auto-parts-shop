@@ -7,6 +7,17 @@
 "companyAdresse":"Avenue Zarbia Imb.19 Sala El Jadida",
 "companyPhone":"+123 456 789",
 "about": "Apropos",
-"group_solide": "Le groupe solide:"
+"group_solide": "Le groupe solide:",
+"login":"Se connecter",
+"inscription":"Enregistrer",
+"email":"E-mail",
+"password":"Mot de pass",
+"register":"register",
+"confirmPassword":"Confirmez le mot de passe",
+"fullName":"nom et prénom"
+
+
+
+
 
 }

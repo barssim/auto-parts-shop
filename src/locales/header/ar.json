@@ -6,5 +6,13 @@
 "companyAdresse":"شارع الزربية العمارة 19 سلا الجديدة",
 "companyPhone":"+123 456 789",
 "about": "استعلامات",
-"group_solide": "solide مجموعة:"
+"group_solide": "solide مجموعة:",
+"login":"دخول",
+"inscription":"تسجيل",
+"email":"بريد إلكتروني",
+"password":"كلمة المرور",
+"register":"سجل",
+"confirmPassword":"تأكيد كلمة المرور",
+"fullName":"الاسم الكامل"
+
 }

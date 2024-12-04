@@ -31,7 +31,7 @@ const About = ({ language }) => {
 		livraison se fait partout à Rabat, Salé et Témara. <br /> La
 		livraison est assurée par notre service logistique de transport. <br />
 		Le livreur ne peut pas assister à l'ouverture du colis. <br /> Les
-		frais de livraison sont d'environ 20 Dhs TTC. <br /> Vous pouvez
+		frais de livraison sont d'environ X Dhs TTC. <br /> Vous pouvez
 		également récupérer votre commande à l'un de nos dépôts, après avoir
 		été informé du dépôt où elle se trouve. <br />
 			</p>
@@ -50,7 +50,7 @@ const About = ({ language }) => {
 		et de récupérer 100 % du montant payé. Dans ce cas, vous avez le choix
 		soit de l'apporter à l'un de nos dépôts les plus proches, soit de
 		commander un transport de retour chez Solide. Pour ce dernier service,
-		des frais d'environ 15 Dhs seront appliqués. <br />
+		des frais d'environ X Dhs seront appliqués. <br />
 			</p>
 		<h3 style={styles.heading}>Retour de la Pièce :</h3>
 		<h3 style={styles.heading}>Retour de la Pièce :</h3>	
