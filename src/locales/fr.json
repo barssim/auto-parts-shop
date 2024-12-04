@@ -9,6 +9,7 @@
 	"search": "chercher",
 	"newPiece": "Pieces Neuve",
 	"usedPiece": "Pieces d'Occasion",
+	"allProducts":"Tous les pieces",
 	"success_fully_logged_out": "Vous étes deconnect&eacute avec succ&eacutes",		
 	"code_message":  "Vous avez recu un code par Email, veuillez  l'entrer ici pour compl&eacuteter votre enregistrement.",
 	"thanks_message":  "Merci pour votre inscription!",
@@ -46,4 +47,5 @@
 	"services": "Services",
 	"not_possible_to_change_reserved_article":  "Vous n'avez pas la possibilit&eacute de changer une pi&egravece d&eacutej&agrave r&eacuteserv&eacute.",
 	"rigths_reserved": "Tous droits réservés."
+	
 }

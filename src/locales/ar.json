@@ -9,6 +9,7 @@
 	"search": "",
 	"newPiece": "قطع جديدة",
 	"usedPiece": "قطع مستعملة",
+	"allProducts":"جميع القطع",
 	"success_fully_logged_out": "تم تسجيل خروجك بنجاح",	
 	"code_message":  "لقد تلقيت رمزًا عبر البريد الإلكتروني، يرجى إدخاله هنا لاستكمال تسجيلك.",
 	"thanks_message":  "شكرًا لتسجيلك!",

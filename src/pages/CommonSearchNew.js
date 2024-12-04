@@ -1,18 +1,18 @@
 // src/App.js
-import React, { useState, useEffect } from "react";
+import React, { useState , useEffect } from "react";
 import axios from "axios";
+import { REST_API_GATEWAY_URL } from "../globals.js";
 
-
-const App1 = () => {
+const CommonSearchNew = () => {
 	const [articles, setArticles] = useState([]); // State for storing API data
 	const [loading, setLoading] = useState(true); // State for loading status
 	const [error, setError] = useState(null); // State for error handling
 
 	useEffect(() => {
 		// Function to fetch data from the API
-		const fetchArticles = async () => {
+		const fetchNewArticles = async () => {
 			try {
-				const response = await axios.get("http://localhost:8080/articles");
+				const response = await axios.get(REST_API_GATEWAY_URL + "articles/newArticles");
 				setArticles(response.data); // Update state with API response
 				setLoading(false);
 			} catch (err) {
@@ -21,7 +21,7 @@ const App1 = () => {
 			}
 		};
 
-		fetchArticles();
+		fetchNewArticles();
 	}, []); // Empty dependency array ensures this runs once when the component mounts
 
 	// Render loading, error, or Articles
@@ -43,4 +43,4 @@ const App1 = () => {
 	);
 };
 
-export default App1;
+export default CommonSearchNew;
