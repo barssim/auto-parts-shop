@@ -1,14 +1,23 @@
-import React from "react";
-import fr from "../locales/fr.json";
-import ar from "../locales/ar.json";
+import React from 'react';
+import fr from "../locales/footer/fr.json";
+import ar from "../locales/footer/ar.json";
 
-const Footer = ({ language }) => {
+const Footer = ({ language, toggleLanguage }) => {
 	const content = language === "fr" ? fr : ar;
-    return (
-        <footer>
-            <p>© 2024 Solide. {content.rigths_reserved}</p>
-        </footer>
-    );
+   return (
+       <footer>
+           <p>&copy; 2024 {content.companyName}</p>
+           <div>
+               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+           </div>
+           <address>
+               {content.companyAdresse}
+               <br />
+               Phone: {content.companyPhone}
+           </address>
+       </footer>
+   );
 };
 
 export default Footer;
