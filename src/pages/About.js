@@ -53,7 +53,6 @@ const About = ({ language }) => {
 		des frais d'environ X Dhs seront appliqués. <br />
 			</p>
 		<h3 style={styles.heading}>Retour de la Pièce :</h3>
-		<h3 style={styles.heading}>Retour de la Pièce :</h3>	
 			
 	   </div>
    );

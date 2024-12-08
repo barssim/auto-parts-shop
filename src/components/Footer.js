@@ -1,12 +1,12 @@
 import React from 'react';
 import fr from "../locales/footer/fr.json";
 import ar from "../locales/footer/ar.json";
-import { COMPANYNAME } from "../globals.js";
+import { COMPANYNAME , COMPANYPHONE, COMPANYEMAIL} from "../globals.js";
 
 const Footer = ({ language, toggleLanguage }) => {
 	const content = language === "fr" ? fr : ar;
    return (
-       <footer>
+       <footer className="footer">
            <p>&copy; 2024 {COMPANYNAME} </p>
            <div>
                <a href={content.facebook_link} target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>Facebook</a>
@@ -15,9 +15,9 @@ const Footer = ({ language, toggleLanguage }) => {
            <address>
                {content.companyAdresse}
                <br />
-               Phone: {content.companyPhone}
+               Phone: {COMPANYPHONE}
                <br />
-               Email: {content.companyEmail}
+               Email: {COMPANYEMAIL}
            </address>
        </footer>
    );

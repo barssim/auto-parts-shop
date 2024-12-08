@@ -1,5 +1,5 @@
 {
-	"whatWeDo":"Vente de Carrosserie d'automobile",
+	"whatWeDo":"Vente de Pieces de Carrosserie d'automobile",
 	"whatYouFind": "Vous trouvez ici toutes sorte de carrosserie pour votre automobile.",
 	
 	"whoAreWe": "Qui sommes-nous?",
@@ -39,9 +39,6 @@
 	"article":  "Article",
 	"please_login":  "Veuillez se connect&eacute afin de pouvoir commander l'article",
 	"successfully_logged_out":  "Vous étes deconnect&eacute avec succ&eacutes",
-	
-	
-
 	
 	
 	"services": "Services",

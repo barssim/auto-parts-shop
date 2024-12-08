@@ -1,64 +1,112 @@
 import React, { useState } from "react";
-import "../cssFiles/Inscription.css"; // Optional: Style the login form
+import "../cssFiles/Inscription.css";
 import fr from "../locales/header/fr.json";
 import ar from "../locales/header/ar.json";
+import axios from "axios";
+import { REST_API_GATEWAY_URL } from "../globals.js";
 
-const Inscription = ({ language, toggleLanguage }) => {
-	const content = language === "fr" ? fr : ar;
+const Inscription = ({ language }) => {
+  const content = language === "fr" ? fr : ar;
   const [formData, setFormData] = useState({
-    name: "",
+    surname: "",
+    firstname: "",
     email: "",
+    adresse: "",
     password: "",
     confirmPassword: "",
   });
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState({});
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setError({ ...error, [name]: "" }); // Clear field-level error on change
   };
 
-  const handleSignup = (e) => {
+  const validateInputs = () => {
+    const { surname, firstname, email, adresse, password, confirmPassword } = formData;
+    const errors = {};
+
+    if (!surname.trim()) errors.surname = content.surnameRequired;
+    if (!firstname.trim()) errors.firstname = content.firstnameRequired;
+    if (!email.trim()) errors.email = content.emailRequired;
+    else if (!/\S+@\S+\.\S+/.test(email)) errors.email = content.invalidEmail;
+
+    if (!adresse.trim()) errors.adresse = content.adresseRequired;
+    if (!password) errors.password = content.passwordRequired;
+    if (!confirmPassword) errors.confirmPassword = content.confirmPasswordRequired;
+    else if (password !== confirmPassword) errors.confirmPassword = content.passwordMismatch;
+
+    return errors;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    const { name, email, password, confirmPassword } = formData;
-
-    // Basic validation
-    if (!name || !email || !password || !confirmPassword) {
-      setError("Please fill in all fields.");
-      setSuccess("");
+    const errors = validateInputs();
+    if (Object.keys(errors).length > 0) {
+      setError(errors);
+      setLoading(false);
       return;
     }
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      setSuccess("");
-      return;
-    }
+    try {
+      const { surname, firstname, email, adresse, password } = formData;
+      const response = await axios.post(REST_API_GATEWAY_URL + "users/new", {
+        surname,
+        firstname,
+        email,
+        adresse,
+        password
+      });
 
-    // Mock signup logic
-    setError("");
-    setSuccess("Registration successful! Welcome, " + name + "!");
+      if (response.status === 201) {
+        setSuccess(content.registrationSuccess.replace("{surname}", surname));
+        setError({});
+      } else {
+        setError({ general: content.registrationError });
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      setError({ general: content.registrationError });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="signup-container">
-      <form className="signup-form" onSubmit={handleSignup}>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <h2>{content.register}</h2>
-        {error && <p className="error-message">{error}</p>}
+        {error.general && <p className="error-message">{error.general}</p>}
         {success && <p className="success-message">{success}</p>}
         <div className="form-group">
-          <label htmlFor="name">{content.fullName}:</label>
+          <label htmlFor="surname">{content.surname}:</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            id="surname"
+            name="surname"
+            value={formData.surname}
             onChange={handleChange}
-            placeholder="Enter your full name"
+            placeholder="Enter your family name"
           />
+          {error.surname && <p className="field-error">{error.surname}</p>}
+        </div>
+        <div className="form-group">
+          <label htmlFor="firstname">{content.firstname}:</label>
+          <input
+            type="text"
+            id="firstname"
+            name="firstname"
+            value={formData.firstname}
+            onChange={handleChange}
+            placeholder="Enter your first name"
+          />
+          {error.firstname && <p className="field-error">{error.firstname}</p>}
         </div>
         <div className="form-group">
           <label htmlFor="email">{content.email}:</label>
@@ -70,6 +118,19 @@ const Inscription = ({ language, toggleLanguage }) => {
             onChange={handleChange}
             placeholder="Enter your email"
           />
+          {error.email && <p className="field-error">{error.email}</p>}
+        </div>
+        <div className="form-group">
+          <label htmlFor="adresse">{content.adresse}:</label>
+          <input
+            type="text"
+            id="adresse"
+            name="adresse"
+            value={formData.adresse}
+            onChange={handleChange}
+            placeholder="Enter your address"
+          />
+          {error.adresse && <p className="field-error">{error.adresse}</p>}
         </div>
         <div className="form-group">
           <label htmlFor="password">{content.password}:</label>
@@ -81,9 +142,10 @@ const Inscription = ({ language, toggleLanguage }) => {
             onChange={handleChange}
             placeholder="Create a password"
           />
+          {error.password && <p className="field-error">{error.password}</p>}
         </div>
         <div className="form-group">
-          <label htmlFor="confirmPassword">{content.confirmPassword}</label>
+          <label htmlFor="confirmPassword">{content.confirmPassword}:</label>
           <input
             type="password"
             id="confirmPassword"
@@ -92,9 +154,10 @@ const Inscription = ({ language, toggleLanguage }) => {
             onChange={handleChange}
             placeholder="Confirm your password"
           />
+          {error.confirmPassword && <p className="field-error">{error.confirmPassword}</p>}
         </div>
-        <button type="submit" className="signup-button">
-          Sign Up
+        <button type="submit" className="signup-button" disabled={loading}>
+          {loading ? content.loading : content.submit}
         </button>
       </form>
     </div>

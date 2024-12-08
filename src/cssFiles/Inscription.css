@@ -2,8 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: #f8f9fa;
+  overflow: auto;
+  flex-wrap: wrap; /* Ensures content wraps instead of breaking layout */
 }
 
 .signup-form {

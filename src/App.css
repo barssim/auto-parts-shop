@@ -57,24 +57,25 @@
 	animation: scroll 10s linear infinite;
 }
 
-.buttonStyle  {
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+.buttonStyle {
+	background-color: #007bff;
+	color: #ffffff;
+	padding: 10px 15px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
 }
 
-.linkStyle  {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 16px;
-    font-weight: bold;
+.linkStyle {
+	text-decoration: none;
+	color: #007bff;
+	font-size: 16px;
+	font-weight: bold;
 }
+
 .scroll-images img {
 	display: inline-block;
 	margin: 0 10px;
@@ -111,46 +112,63 @@
 }
 
 .side-menu {
-    position: fixed;
-    top: 50%; /* Center vertically */
-    left: 0;  /* Stick to the left side */
-    transform: translateY(-50%); /* Adjust for centering */
-    background-color: #ffffff; /* Background color for the menu */
-    padding: 10px;
-    border-right: 2px solid #ccc;
-    z-index: 1000; /* Ensure it stays above other elements */
+	position: fixed;
+	top: 50%;
+	/* Center vertically */
+	left: 0;
+	/* Stick to the left side */
+	transform: translateY(-50%);
+	/* Adjust for centering */
+	background-color: #ffffff;
+	/* Background color for the menu */
+	padding: 10px;
+	border-right: 2px solid #ccc;
+	z-index: 1000;
+	/* Ensure it stays above other elements */
 }
 
 .menu-item {
-    display: block; /* Ensure links are on separate lines */
-    margin: 10px 0;
-    padding: 10px;
-    color: #333;
-    text-decoration: none;
-    font-size: 16px;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    text-align: center;
+	display: block;
+	/* Ensure links are on separate lines */
+	margin: 10px 0;
+	padding: 10px;
+	color: #333;
+	text-decoration: none;
+	font-size: 16px;
+	background-color: #e0e0e0;
+	border-radius: 5px;
+	text-align: center;
 }
 
 .menu-item:hover {
-    background-color: #d5d5d5;
+	background-color: #d5d5d5;
 }
 
 .new-piece {
-    background-color: #007bff;
-    color: white;
+	background-color: #007bff;
+	color: white;
 }
 
 .used-piece {
-    background-color: #007bff;
-    color: white;
+	background-color: #007bff;
+	color: white;
 }
 
 .new-piece:hover {
-    background-color: #45a049;
+	background-color: #45a049;
 }
 
 .used-piece:hover {
-    background-color: #e53935;
+	background-color: #e53935;
+}
+
+
+.footer {
+	background-color: #007bff;
+	text-align: center;
+	padding: 20px;
+	width: 100%;
+	position: relative;
+	bottom: 0;
+	margin-top: auto;
 }

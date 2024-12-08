@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import fr from "../locales/header/fr.json";
 import ar from "../locales/header/ar.json";
+import {  COMPANYPHONE, COMPANYEMAIL} from "../globals.js";
 
 const Contact = ({ language }) => {
 	const content = language === "fr" ? fr : ar;
@@ -86,8 +87,8 @@ const Contact = ({ language }) => {
 
       <div style={{ marginTop: "20px", textAlign: "center" }}>
         <p>{content.companyAdresse}</p>
-        <p>Phone:{content.companyPhone}</p>
-        <p>Email: {content.companyEmail}</p>
+        <p>Phone:{COMPANYPHONE}</p>
+        <p>Email: {COMPANYEMAIL}</p>
       </div>
     </div>
   );

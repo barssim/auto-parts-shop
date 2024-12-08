@@ -8,6 +8,7 @@ import About from './pages/About';
 import Login from './pages/Login';
 import AllArticle from './pages/AllArticle';
 import CommenSearchNew from './pages/CommonSearchNew';
+import CommenSearchOld from './pages/CommonSearchOld';
 import Inscription from './pages/Inscription';
 import Contact from './pages/Contact';
 import fr from "./locales/fr.json";
@@ -57,6 +58,7 @@ function App() {
 				<Route path="/inscription" element={<Inscription language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/allArticle" element={<AllArticle language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchNew" element={<CommenSearchNew language={language} toggleLanguage={toggleLanguage} />} />
+			    <Route path="/commonSearchOld" element={<CommenSearchOld language={language} toggleLanguage={toggleLanguage} />} />
 			</Routes>
 			<Footer language={language} toggleLanguage={toggleLanguage} />
 		</Router>
