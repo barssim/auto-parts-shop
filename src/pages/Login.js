@@ -2,62 +2,62 @@ import React, { useState } from "react";
 import "../cssFiles/Login.css"; // Optional: Style the login form
 import fr from "../locales/header/fr.json";
 import ar from "../locales/header/ar.json";
+import axios from 'axios';
 
-const Login = ({ language, toggleLanguage }) => {
-	const content = language === "fr" ? fr : ar;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+const Login = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+    const handleLogin = (e) => {
+        e.preventDefault();
 
-    // Basic validation
-    if (!email || !password) {
-      setError("Please fill in all fields.");
-      return;
-    }
+        const userCredentials = { username, password };
 
-    // Mock login logic
-    if (email === "user@example.com" && password === "password123") {
-      alert("Login successful!");
-      setError("");
-    } else {
-      setError("Invalid email or password.");
-    }
-  };
+        // Send POST request to the backend to authenticate the user
+        axios.post('http://localhost:8085/api/auth/login', userCredentials)
+            .then(response => {
+                // Store the JWT token in sessionStorage
+                sessionStorage.setItem('jwt_token', response.data.token);
+                // Redirect the user to a protected page (you can use react-router here)
+                window.location.href = '/dashboard';  // Example redirection
+            })
+            .catch(error => {
+                setErrorMessage('Invalid credentials. Please try again.');
+            });
+    };
 
-  return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleLogin}>
-        <h2>Login</h2>
-        {error && <p className="error-message">{error}</p>}
-        <div className="form-group">
-          <label htmlFor="email">{content.email}:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-          />
+    return (
+        <div className="login-container">
+            <h2>Login</h2>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+            <form onSubmit={handleLogin}>
+                <div>
+                    <label htmlFor="username">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        value={username} 
+                        onChange={(e) => setUsername(e.target.value)} 
+                        required 
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        required 
+                    />
+                </div>
+                <div>
+                    <button type="submit">Login</button>
+                </div>
+            </form>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">{content.password}:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-          />
-        </div>
-        <button type="submit" className="login-button">
-          {content.login}
-        </button>
-      </form>
-    </div>
-  );
+    );
 };
 
 export default Login;

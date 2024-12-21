@@ -1,6 +1,5 @@
 // src/App.js
-import React, { useState , useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { REST_API_GATEWAY_URL } from "../globals.js";
 
 const CommonSearchOld = () => {
@@ -10,10 +9,17 @@ const CommonSearchOld = () => {
 
 	useEffect(() => {
 		// Function to fetch data from the API
-		const fetchOldArticles = async () => {
+		const token = sessionStorage.getItem('jwt_token');
+		const fetchOldArticles = async (token) => {
 			try {
-				const response = await axios.get(REST_API_GATEWAY_URL + "articles/oldArticles");
-				setArticles(response.data); // Update state with API response
+				const response = await fetch(REST_API_GATEWAY_URL + "articles/oldArticles", {
+					method: 'GET',
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				});
+				const data = await response.json();
+				setArticles(data);
 				setLoading(false);
 			} catch (err) {
 				setError("Failed to fetch Articles");
@@ -28,18 +34,18 @@ const CommonSearchOld = () => {
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error: {error}</div>;
 
-	return (	
+	return (
 
-    <div>
-      <h1>Article List</h1>
-      <ul>
-        {articles.map((article) => (
-          <li key={article.articleno}>
-            {article.articleName} - {article.articleDescription}
-          </li>
-        ))}
-      </ul>
-    </div>
+		<div>
+			<h1>Article List</h1>
+			<ul>
+				{articles.map((article) => (
+					<li key={article.articleno}>
+						{article.articleName} - {article.articleDescription}
+					</li>
+				))}
+			</ul>
+		</div>
 	);
 };
 
