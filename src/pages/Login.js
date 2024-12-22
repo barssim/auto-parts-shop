@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "../cssFiles/Login.css"; // Optional: Style the login form
-import fr from "../locales/header/fr.json";
-import ar from "../locales/header/ar.json";
 import axios from 'axios';
+import { REST_API_GATEWAY_URL } from "../globals.js";
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -15,7 +14,7 @@ const Login = () => {
         const userCredentials = { username, password };
 
         // Send POST request to the backend to authenticate the user
-        axios.post('http://localhost:8085/api/auth/login', userCredentials)
+        axios.post(REST_API_GATEWAY_URL + "api/auth/login", userCredentials)
             .then(response => {
                 // Store the JWT token in sessionStorage
                 sessionStorage.setItem('jwt_token', response.data.token);

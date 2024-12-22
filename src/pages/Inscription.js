@@ -55,10 +55,10 @@ const Inscription = ({ language }) => {
 		}
 
 		try {
-			const { SURNAME, firstname, email, adresse, password } = formData;
+			const { surname, firstname, email, adresse, password } = formData;
 		//	const token = sessionStorage.getItem('jwt_token');
-			const response = await axios.post(REST_API_GATEWAY_URL + "users/new", {
-				SURNAME,
+			const response = await axios.post(REST_API_GATEWAY_URL + "api/auth/register", {
+				surname,
 				firstname,
 				email,
 				adresse,
@@ -71,8 +71,8 @@ const Inscription = ({ language }) => {
 			});
 
 			if (response.status === 201) {
-				setSuccess(content.registrationSuccess.replace("{surname}", SURNAME));
-				setError({});
+				setSuccess(content.registrationSuccess.replace("{surname}", surname));
+				//setError({});
 				// Redirect the user to a protected page (you can use react-router here)
 				window.location.href = '/dashboard';  // Example redirection
 			} else {
