@@ -9,14 +9,10 @@ const CommonSearchOld = () => {
 
 	useEffect(() => {
 		// Function to fetch data from the API
-		const token = sessionStorage.getItem('jwt_token');
-		const fetchOldArticles = async (token) => {
+		const fetchOldArticles = async () => {
 			try {
 				const response = await fetch(REST_API_GATEWAY_URL + "articles/oldArticles", {
-					method: 'GET',
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
+					method: 'GET'
 				});
 				const data = await response.json();
 				setArticles(data);

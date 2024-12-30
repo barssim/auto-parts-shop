@@ -9,15 +9,11 @@ const CommonSearchNew = () => {
 
 	useEffect(() => {
 		// Function to fetch data from the API
-		const token = sessionStorage.getItem('jwt_token');
-		const fetchNewArticles = async (token) => {
+		const fetchNewArticles = async () => {
 			
 			 try {
 				 const response = await fetch(REST_API_GATEWAY_URL + "articles/newArticles", {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        method: 'GET'
       });
       const data = await response.json();
       setArticles(data); 
@@ -29,13 +25,8 @@ const CommonSearchNew = () => {
 			}
 		};
 
-		if (token) {
-			console.log('JWT Token:', token);
 			// You can use the token, for example, in an API request
-			fetchNewArticles(token);
-		} else {
-			console.log('No token found in sessionStorage.');
-		}
+			fetchNewArticles();
 	}, []); // Empty dependency array ensures this runs once when the component mounts
 
 	// Render loading, error, or Articles
