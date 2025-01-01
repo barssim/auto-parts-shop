@@ -6,9 +6,7 @@ import ar from "../locales/ar.json";
 const Home = ({ language }) => {
     const content = language === "fr" ? fr : ar;
     return (
-        <div>
-            <br /><br />
-            <div className="side-menu">
+            <div className="menu-item">
                 <a 
                     href="/commonSearchNew"
                     title="Chercher Pièce Neuve"
@@ -30,8 +28,7 @@ const Home = ({ language }) => {
                 >
                     {content.allProducts}
                 </a>
-            </div>t 
-        </div>
+            </div>
     );
 }
 

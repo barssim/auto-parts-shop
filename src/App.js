@@ -25,18 +25,29 @@ function App() {
 	return (
 		<Router>
 			<Header language={language} toggleLanguage={toggleLanguage} />
-			<div style={{ textAlign: "center" }}>
-				<h2>{content.whatWeDo}</h2>
+			<div style={{ display: "flex", alignItems: "center" }}>
+				{/* Left Menu */}
+				<div style={{ width: "15%", padding: "10px", textAlign: "left", borderRight: "1px solid #ccc" }}>
+					<Home language={language} toggleLanguage={toggleLanguage} />
+				</div>
+
+				{/* Right Content */}
+				<div style={{ flex: 1, padding: "10px", textAlign: "center" }}>
+					<h2>{content.whatWeDo}</h2>
 				<div
-					className="marquee"
-					style={{
-						fontSize: "25px",
-						letterSpacing: "normal",
-						position: "relative",
-						textAlign: "center",
-						overflow: "hidden", // Ensure content stays within bounds
-						whiteSpace: "nowrap", // Prevent wrapping
-					}}
+					className="marquee-container"
+					 style={{
+    fontSize: "25px",
+    letterSpacing: "normal",
+    position: "relative",
+    textAlign: "center",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    width: "800px", // Limit the width
+    height: "80px", // Optional: for better vertical centering
+    lineHeight: "40px", // Match height for vertical centering
+    margin: "0 auto", // Center the container itself if needed
+  }}
 				>
 					<div className="scroll-images">
 						<img src="images/aile.jpg" alt="Aile" />
@@ -48,17 +59,19 @@ function App() {
 						<img src="images/poignee.jpg" alt="Poignée" />
 					</div>
 				</div>
+				</div>
+				
 			</div>
-			<br />
+			
+			<br/>
 			<Routes>
-				<Route path="/Home" element={<Home language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/about" element={<About language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/contact" element={<Contact language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/login" element={<Login language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/inscription" element={<Inscription language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/allArticle" element={<AllArticle language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchNew" element={<CommenSearchNew language={language} toggleLanguage={toggleLanguage} />} />
-			    <Route path="/commonSearchOld" element={<CommenSearchOld language={language} toggleLanguage={toggleLanguage} />} />
+				<Route path="/commonSearchOld" element={<CommenSearchOld language={language} toggleLanguage={toggleLanguage} />} />
 			</Routes>
 			<Footer language={language} toggleLanguage={toggleLanguage} />
 		</Router>

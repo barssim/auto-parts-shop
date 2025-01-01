@@ -33,9 +33,7 @@ const AllArticle = () => {
 	if (error) return <div>Error: {error}</div>;
 
 	return (
-
-		<div>
-			<h1>Article List</h1>
+		<div style={{ flex: 1, padding: "10px", textAlign: "center" }}>
 			<ul>
 				{articles.map((article) => (
 					<li key={article.articleno}>
