@@ -27,12 +27,11 @@ const Login = () => {
     };
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
+        <div style={{ flex: 1, padding: "10px", textAlign: "center" }}>
             {errorMessage && <div className="error-message">{errorMessage}</div>}
-            <form onSubmit={handleLogin}>
+            <form class="h2" onSubmit={handleLogin}>
                 <div>
-                    <label htmlFor="username">Username</label>
+                    <label  htmlFor="username">Username</label>
                     <input 
                         type="text" 
                         id="username" 
@@ -41,6 +40,7 @@ const Login = () => {
                         required 
                     />
                 </div>
+                <br/>
                 <div>
                     <label htmlFor="password">Password</label>
                     <input 
@@ -51,9 +51,12 @@ const Login = () => {
                         required 
                     />
                 </div>
+                <br/>
                 <div>
-                    <button type="submit">Login</button>
+                    <button
+					className="buttonStyle" type="submit">Login</button>
                 </div>
+                <br/>
             </form>
         </div>
     );
