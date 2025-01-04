@@ -61,70 +61,105 @@ const CommonSearchOld = ({ language }) => {
 	};
 
 	return (
-		<div style={{ width: "15%", padding: "10px", textAlign: "left", borderRight: "1px solid #ccc" }}>
-			<h3>Filtrer:</h3>
-			<form onSubmit={handleSubmit}>
-
-			
-				<div>
-					<label htmlFor="category">{content.category}:</label>
-					<select id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
-						<option value="">Select a category</option>
-						{categories.map((category, index) => (
-							<option key={index} value={category}>
-								{category}
-							</option>
-						))}
-					</select>
-				</div>
-				<div>
-					<label htmlFor="manifacturer"> {content.manifacturer}:</label>
-					<select id="manifacturer" value={manifacturer} onChange={(e) => setManifacturer(e.target.value)}>
-						<option value="">Select a manifacturer</option>
-						{manifacturers.map((manifacturer, index) => (
-							<option key={index} value={manifacturer}>
-								{manifacturer}
-							</option>
-						))}
-					</select>
-				</div>
-				<div>
-					<label htmlFor="model">{content.model}:</label>
-					<select
-						id="model"
-						value={model}
-						onChange={(e) => setModel(e.target.value)}
-						disabled={!manifacturer} // Disable until a category is selected
-					>
-						<option value="">Select a model</option>
-						{manifacturer &&
-							manifacturerWithModels[manifacturer].map((model, index) => (
-								<option key={index} value={model}>
-									{model}
+		<div style={{ display: "flex" }}>
+			{/* Filter Form */}
+			<div style={{ width: "15%", padding: "10px", textAlign: "left", borderRight: "1px solid #ccc" }}>
+				<h3>Filtrer:</h3>
+				<form onSubmit={handleSubmit}>
+					<div>
+						<label htmlFor="category">{content.category}:</label>
+						<select id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+							<option value="">Select a category</option>
+							{categories.map((category, index) => (
+								<option key={index} value={category}>
+									{category}
 								</option>
 							))}
-					</select>
-				</div>
-				<button type="submit">{content.search}</button>
-			</form>
-			{response && (
-				<div style={{ flex: 1, padding: "10px", textAlign: "center" }}>
-					<h3>Response</h3>
-					<ul>
-						{response.map((article) => (
-							<li key={article.articleno}>
-								{article.name} - {article.description}
-							</li>
-						))}
-					</ul>
-				</div>
-			)}
-			{error && (
-				<div>
-					<h2>Error</h2>
-					<p>{error}</p>
-				</div>
-			)}
+						</select>
+					</div>
+					<div>
+						<label htmlFor="manifacturer">{content.manifacturer}:</label>
+						<select id="manifacturer" value={manifacturer} onChange={(e) => setManifacturer(e.target.value)}>
+							<option value="">Select a manifacturer</option>
+							{manifacturers.map((manifacturer, index) => (
+								<option key={index} value={manifacturer}>
+									{manifacturer}
+								</option>
+							))}
+						</select>
+					</div>
+					<div>
+						<label htmlFor="model">{content.model}:</label>
+						<select
+							id="model"
+							value={model}
+							onChange={(e) => setModel(e.target.value)}
+							disabled={!manifacturer}
+						>
+							<option value="">Select a model</option>
+							{manifacturer &&
+								manifacturerWithModels[manifacturer].map((model, index) => (
+									<option key={index} value={model}>
+										{model}
+									</option>
+								))}
+						</select>
+					</div>
+					<button type="submit">{content.search}</button>
+				</form>
+				{error && (
+					<div>
+						<h2>Error</h2>
+						<p>{error}</p>
+					</div>
+				)}
+			</div>
+
+			{/* Response Section */}
+			<div style={{ flex: 1, padding: "20px", textAlign: "center" }}>
+				{response && response.length > 0 ? (
+					<>
+						<table style={{ borderCollapse: "separate", borderSpacing: "0 10px", width: "100%" }}>
+							<tbody>
+								{response.map((article) => (
+									<React.Fragment key={article.articleno}>
+										<tr className="cell" style={{ backgroundColor: "#87CEEB" }}>
+											<td style={{ width: "150px", textAlign: "left" }}></td>
+											<td style={{ width: "150px", border: "2px solid", textAlign: "left" }}>
+												<img id="myImg" src={article.articleImg} width="200" alt="Article Image" />
+											</td>
+											<td style={{ width: "20px" }}></td>
+											<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
+												<span style={{ fontSize: "15px", letterSpacing: "normal", position: "relative", top: "0px" }}>
+													<b>{article.name}</b>
+												</span>
+												<br />
+												<span style={{ fontSize: "10px", letterSpacing: "normal", position: "relative", top: "0px" }}>
+													<b>Article No: {article.articleno}</b>
+												</span>
+												<br />
+												<br />
+												<h4>{article.price} DH</h4>
+											</td>
+											<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
+												<span style={{ fontSize: "15px", letterSpacing: "normal", position: "relative", top: "0px" }}>
+													<b>{article.description}</b>
+												</span>
+
+											</td>
+										</tr>
+
+									</React.Fragment>
+								))}
+							</tbody>
+						</table>
+
+
+					</>
+				) : (
+					<h3>No Results Found</h3>
+				)}
+			</div>
 		</div>
 	);
 };
