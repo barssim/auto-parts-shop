@@ -45,6 +45,16 @@ heading {
 	margin-bottom: 15px;
 }
 
+.filter-form {
+	width: 300px;
+	padding: 20px;
+	background: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
 paragraph {
 	font-size: 18px;
 	line-height: 1.6;

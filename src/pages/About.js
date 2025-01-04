@@ -6,7 +6,7 @@ import ar from "../locales/header/ar.json";
 const About = ({ language }) => {
 	const content = language === "fr" ? fr : ar;
 	return (
-		<div style={styles.container}>
+		<div style={{ flex: 1, padding: "10px", textAlign: "center" }}>
 			<h1 style={styles.heading}> {content.group_solide}</h1>
 			<p style={styles.paragraph}>
 				Le Groupe Solide est une plateforme solide de e-commerce pour la vente

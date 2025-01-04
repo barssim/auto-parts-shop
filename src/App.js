@@ -6,8 +6,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
-import AllArticle from './pages/AllArticle';
-import CommenSearchNew from './pages/CommonSearchNew';
+import CommonSearchNew from './pages/CommonSearchNew';
 import CommenSearchOld from './pages/CommonSearchOld';
 import Inscription from './pages/Inscription';
 import Contact from './pages/Contact';
@@ -34,43 +33,42 @@ function App() {
 				{/* Right Content */}
 				<div style={{ flex: 1, padding: "10px", textAlign: "center" }}>
 					<h2>{content.whatWeDo}</h2>
-				<div
-					className="marquee-container"
-					 style={{
-    fontSize: "25px",
-    letterSpacing: "normal",
-    position: "relative",
-    textAlign: "center",
-    overflow: "hidden",
-    whiteSpace: "nowrap",
-    width: "800px", // Limit the width
-    height: "80px", // Optional: for better vertical centering
-    lineHeight: "40px", // Match height for vertical centering
-    margin: "0 auto", // Center the container itself if needed
-  }}
-				>
-					<div className="scroll-images">
-						<img src="images/aile.jpg" alt="Aile" />
-						<img src="images/pare_choc.jpg" alt="Pare Choc" />
-						<img src="images/porte.jpg" alt="Porte" />
-						<img src="images/capot.jpg" alt="Capot" />
-						<img src="images/pare_brise.jpg" alt="Pare Brise" />
-						<img src="images/vitre.jpg" alt="Vitre" />
-						<img src="images/poignee.jpg" alt="Poignée" />
+					<div
+						className="marquee-container"
+						style={{
+							fontSize: "25px",
+							letterSpacing: "normal",
+							position: "relative",
+							textAlign: "center",
+							overflow: "hidden",
+							whiteSpace: "nowrap",
+							width: "800px", // Limit the width
+							height: "80px", // Optional: for better vertical centering
+							lineHeight: "40px", // Match height for vertical centering
+							margin: "0 auto", // Center the container itself if needed
+						}}
+					>
+						<div className="scroll-images">
+							<img src="images/aile.jpg" alt="Aile" />
+							<img src="images/pare_choc.jpg" alt="Pare Choc" />
+							<img src="images/porte.jpg" alt="Porte" />
+							<img src="images/capot.jpg" alt="Capot" />
+							<img src="images/pare_brise.jpg" alt="Pare Brise" />
+							<img src="images/vitre.jpg" alt="Vitre" />
+							<img src="images/poignee.jpg" alt="Poignée" />
+						</div>
 					</div>
 				</div>
-				</div>
-				
+
 			</div>
-			
-			<br/>
+
+			<br />
 			<Routes>
 				<Route path="/about" element={<About language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/contact" element={<Contact language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/login" element={<Login language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/inscription" element={<Inscription language={language} toggleLanguage={toggleLanguage} />} />
-				<Route path="/allArticle" element={<AllArticle language={language} toggleLanguage={toggleLanguage} />} />
-				<Route path="/commonSearchNew" element={<CommenSearchNew language={language} toggleLanguage={toggleLanguage} />} />
+				<Route path="/commonSearchNew" element={<CommonSearchNew language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchOld" element={<CommenSearchOld language={language} toggleLanguage={toggleLanguage} />} />
 			</Routes>
 			<Footer language={language} toggleLanguage={toggleLanguage} />

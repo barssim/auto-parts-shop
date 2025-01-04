@@ -6,7 +6,7 @@
 	"connection": "دخول",
 	"registration": "تسجيل",
 	"overTheTime": "على مدار 24 ساعة",
-	"search": "",
+	"search": "ابحث",
 	"newPiece": "قطع جديدة",
 	"usedPiece": "قطع مستعملة",
 	"allProducts":"جميع القطع",
@@ -40,6 +40,10 @@
 	"please_login":  "يرجى تسجيل الدخول حتى تتمكن من طلب السلعة",
 	"successfully_logged_out":  "لقد تم تسجيل خروجك بنجاح",
 	
+	"type":  "النوع",
+	"category":  "نوع القطعة",
+	"manifacturer":  "ماركة السيارة",
+	"model":  "موديل السيارة",
 	
 	"services": "خدمات",
 	"not_possible_to_change_reserved_article":  "ليس لديك إمكانية تغيير سلعة محجوزة.",

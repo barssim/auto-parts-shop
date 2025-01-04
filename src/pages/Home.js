@@ -21,13 +21,6 @@ const Home = ({ language }) => {
                 >
                     {content.usedPiece}
                 </a>
-                <a
-                    href="/allArticle"
-                    title="Chercher tout les sorte de Pièces"
-                    className="menu-item used-piece"
-                >
-                    {content.allProducts}
-                </a>
             </div>
     );
 }

@@ -39,7 +39,10 @@
 	"article":  "Article",
 	"please_login":  "Veuillez se connect&eacute afin de pouvoir commander l'article",
 	"successfully_logged_out":  "Vous étes deconnect&eacute avec succ&eacutes",
-	
+	"type":  "Type",
+	"category":  "Catégorie de pièce",
+	"manifacturer":  "Marque de vehicule",
+	"model":  "Modèl de vehicule",
 	
 	"services": "Services",
 	"not_possible_to_change_reserved_article":  "Vous n'avez pas la possibilit&eacute de changer une pi&egravece d&eacutej&agrave r&eacuteserv&eacute.",
