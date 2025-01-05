@@ -13,6 +13,7 @@ import Contact from './pages/Contact';
 import fr from "./locales/fr.json";
 import ar from "./locales/ar.json";
 import "./App.css";
+import ArticleDetail from './pages/ArticleDetail'; // Component for the article detail page
 
 function App() {
 	const [language, setLanguage] = useState("fr"); // Track current language
@@ -70,6 +71,7 @@ function App() {
 				<Route path="/inscription" element={<Inscription language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchNew" element={<CommonSearchNew language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchOld" element={<CommenSearchOld language={language} toggleLanguage={toggleLanguage} />} />
+				<Route path="/details/:articleno" element={<ArticleDetail language={language} toggleLanguage={toggleLanguage} />} />
 			</Routes>
 			<Footer language={language} toggleLanguage={toggleLanguage} />
 		</Router>

@@ -6,6 +6,7 @@ import ar from "../locales/ar.json";
 import { manifacturerWithModels } from "../selectArticleOptions.js"
 import { manifacturers } from "../selectArticleOptions.js"
 import { categories } from "../selectArticleOptions.js"
+import { Link } from "react-router-dom";
 
 const CommonSearchNew = ({ language }) => {
 	const content = language === "fr" ? fr : ar;
@@ -124,15 +125,25 @@ const CommonSearchNew = ({ language }) => {
 								{response.map((article) => (
 									<React.Fragment key={article.articleno}>
 										<tr className="cell" style={{ backgroundColor: "#87CEEB" }}>
-											<td style={{ width: "150px", textAlign: "left" }}></td>
 											<td style={{ width: "150px", border: "2px solid", textAlign: "left" }}>
 												<img id="myImg" src={article.articleImg} width="200" alt="Article Image" />
 											</td>
 											<td style={{ width: "20px" }}></td>
 											<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
-												<span style={{ fontSize: "15px", letterSpacing: "normal", position: "relative", top: "0px" }}>
-													<b>{article.name}</b>
-												</span>
+												<div key={article.id} style={{ marginBottom: "20px" }}>
+													<Link
+														to={`/details/${article.articleno}`}
+														style={{
+															display: "inline-block",
+															marginTop: "10px",
+															textDecoration: "none",
+															color: "blue",
+															fontWeight: "bold",
+														}}
+													>
+														<b>{article.name}</b>
+													</Link>
+												</div>
 												<br />
 												<span style={{ fontSize: "10px", letterSpacing: "normal", position: "relative", top: "0px" }}>
 													<b>Article No: {article.articleno}</b>
@@ -142,9 +153,35 @@ const CommonSearchNew = ({ language }) => {
 												<h4>{article.price} DH</h4>
 											</td>
 											<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
-												<span style={{ fontSize: "15px", letterSpacing: "normal", position: "relative", top: "0px" }}>
-													<b>{article.description}</b>
-												</span>
+												<div>
+													<span
+														style={{
+															fontSize: "18px",
+															letterSpacing: "normal",
+															position: "relative",
+															top: "0px",
+															textDecoration: "underline",
+															display: "block",
+															marginBottom: "10px",
+														}}
+													>
+														<b>Description:</b>
+													</span>
+													<textarea
+														style={{
+															fontSize: "15px",
+															letterSpacing: "normal",
+															width: "100%",
+															height: "100px",
+															resize: "none",
+															padding: "10px",
+															backgroundColor: "#87CEFB",
+															boxSizing: "border-box",
+														}}
+														value={article.description}
+														readOnly
+													/>
+												</div>
 
 											</td>
 										</tr>

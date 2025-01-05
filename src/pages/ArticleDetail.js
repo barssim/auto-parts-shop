@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { REST_API_GATEWAY_URL } from "../globals.js";
-import "../cssFiles/styles.css";
 import fr from "../locales/fr.json";
 import ar from "../locales/ar.json";
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import { manifacturerWithModels } from "../selectArticleOptions.js"
 import { manifacturers } from "../selectArticleOptions.js"
 import { categories } from "../selectArticleOptions.js"
-import { Link } from "react-router-dom";
 
-const CommonSearchOld = ({ language }) => {
+const ArticleDetail = ({ language }) => {
 	const content = language === "fr" ? fr : ar;
+	const { articleno } = useParams();
+	const [article, setArticle] = useState(null);
+	const [loading, setLoading] = useState(true);
 	const [response, setResponse] = useState(null);
 	const [error, setError] = useState(null);
 	const [manifacturer, setManifacturer] = useState("");
@@ -19,7 +23,7 @@ const CommonSearchOld = ({ language }) => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		const oldNew = "old"; // Example value for oldNew
+		const oldNew = "new"; // Example value for oldNew
 		const category = event.target.category.value;
 		const model = event.target.model.value;
 		const manifacturer = event.target.manifacturer.value;
@@ -61,9 +65,39 @@ const CommonSearchOld = ({ language }) => {
 		}
 	};
 
+	useEffect(() => {
+		const fetchArticle = async () => {
+			try {
+				const response = await fetch(`${REST_API_GATEWAY_URL}articles/${articleno}`);
+				if (!response.ok) {
+					throw new Error("Failed to fetch article details");
+				}
+				const data = await response.json();
+				setArticle(data); // Update the state with the fetched article
+			} catch (err) {
+				setError(err.message);
+			} finally {
+				setLoading(false); // Set loading to false when the fetch is complete
+			}
+		};
+
+		fetchArticle();
+	}, [articleno]);
+
+	if (loading) {
+		return <h2>Loading...</h2>; // Display a loading indicator
+	}
+
+	if (error) {
+		return <h2>Error: {error}</h2>; // Display an error message
+	}
+
+	if (!article) {
+		return <h2>Article not found</h2>; // Handle cases where the article doesn't exist
+	}
+
 	return (
 		<div style={{ display: "flex" }}>
-			{/* Filter Form */}
 			<div style={{ width: "15%", padding: "10px", textAlign: "left", borderRight: "1px solid #ccc" }}>
 				<h3>Filtrer:</h3>
 				<form onSubmit={handleSubmit}>
@@ -115,90 +149,77 @@ const CommonSearchOld = ({ language }) => {
 					</div>
 				)}
 			</div>
-
-			{/* Response Section */}
 			<div style={{ flex: 1, padding: "20px", textAlign: "center" }}>
-				{response && response.length > 0 ? (
-					<>
-						<table style={{ borderCollapse: "separate", borderSpacing: "0 10px", width: "100%" }}>
-							<tbody>
-								{response.map((article) => (
-									<React.Fragment key={article.articleno}>
-										<tr className="cell" style={{ backgroundColor: "#87CEEB" }}>
-											<td style={{ width: "150px", border: "2px solid", textAlign: "left" }}>
-												<img id="myImg" src={article.articleImg} width="200" alt="Article Image" />
-											</td>
-											<td style={{ width: "20px" }}></td>
-											<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
-												<div key={article.id} style={{ marginBottom: "20px" }}>
-													<Link
-														to={`/details/${article.articleno}`}
-														style={{
-															display: "inline-block",
-															marginTop: "10px",
-															textDecoration: "none",
-															color: "blue",
-															fontWeight: "bold",
-														}}
-													>
-														<b>{article.name}</b>
-													</Link>
-												</div>
-												<br />
-												<span style={{ fontSize: "10px", letterSpacing: "normal", position: "relative", top: "0px" }}>
-													<b>Article No: {article.articleno}</b>
-												</span>
-												<br />
-												<br />
-												<h4>{article.price} DH</h4>
-											</td>
-											<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
-												<div>
-													<span
-														style={{
-															fontSize: "18px",
-															letterSpacing: "normal",
-															position: "relative",
-															top: "0px",
-															textDecoration: "underline",
-															display: "block",
-															marginBottom: "10px",
-														}}
-													>
-														<b>Description:</b>
-													</span>
-													<textarea
-														style={{
-															fontSize: "15px",
-															letterSpacing: "normal",
-															width: "100%",
-															height: "100px",
-															resize: "none",
-															padding: "10px",
-															backgroundColor: "#87CEFB",
-															boxSizing: "border-box",
-														}}
-														value={article.description}
-														readOnly
-													/>
-												</div>
 
-											</td>
-										</tr>
+				<table style={{ borderCollapse: "separate", borderSpacing: "0 10px", width: "100%" }}>
+					<tbody>
+						<React.Fragment key={article.articleno}>
+							<tr className="cell" style={{ backgroundColor: "#87CEEB" }}>
+								<td style={{ width: "150px", border: "2px solid", textAlign: "left" }}>
+									<img id="myImg" src={article.articleImg} width="200" alt="Article Image" />
+								</td>
+								<td style={{ width: "20px" }}></td>
+								<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
+									<div key={article.id} style={{ marginBottom: "20px" }}>
+										<Link
+											to={`/details/${article.articleno}`}
+											style={{
+												fontSize: "15px",
+												textDecoration: "none",
+												color: "blue",
+											}}
+										>
+											<b>{article.name}</b>
+										</Link>
+									</div>
+									<br />
+									<span style={{ fontSize: "10px", letterSpacing: "normal", position: "relative", top: "0px" }}>
+										<b>Article No: {article.articleno}</b>
+									</span>
+									<br />
+									<br />
+									<h4>{article.price} DH</h4>
+								</td>
+								<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
+									<div>
+										<span
+											style={{
+												fontSize: "18px",
+												letterSpacing: "normal",
+												position: "relative",
+												top: "0px",
+												textDecoration: "underline",
+												display: "block",
+												marginBottom: "10px",
+											}}
+										>
+											<b>Description:</b>
+										</span>
+										<textarea
+											style={{
+												fontSize: "15px",
+												letterSpacing: "normal",
+												width: "100%",
+												height: "100px",
+												resize: "none",
+												padding: "10px",
+												backgroundColor: "#87CEFB",
+												boxSizing: "border-box",
+											}}
+											value={article.description}
+											readOnly
+										/>
+									</div>
 
-									</React.Fragment>
-								))}
-							</tbody>
-						</table>
+								</td>
+							</tr>
 
-
-					</>
-				) : (
-					<h3>No Results Found</h3>
-				)}
+						</React.Fragment>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);
-};
+}
 
-export default CommonSearchOld;
+export default ArticleDetail;
