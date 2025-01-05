@@ -144,7 +144,6 @@ const CommonSearchOld = ({ language }) => {
 														<b>{article.name}</b>
 													</Link>
 												</div>
-												<br />
 												<span style={{ fontSize: "10px", letterSpacing: "normal", position: "relative", top: "0px" }}>
 													<b>Article No: {article.articleno}</b>
 												</span>

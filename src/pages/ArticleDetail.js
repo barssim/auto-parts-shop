@@ -151,16 +151,21 @@ const ArticleDetail = ({ language }) => {
 			</div>
 			<div style={{ flex: 1, padding: "20px", textAlign: "center" }}>
 
-				<table style={{ borderCollapse: "separate", borderSpacing: "0 10px", width: "100%" }}>
+				<table style={{ borderCollapse: "separate", borderSpacing: "10px" }}>
 					<tbody>
 						<React.Fragment key={article.articleno}>
 							<tr className="cell" style={{ backgroundColor: "#87CEEB" }}>
-								<td style={{ width: "150px", border: "2px solid", textAlign: "left" }}>
-									<img id="myImg" src={article.articleImg} width="200" alt="Article Image" />
+								<td style={{ width: "150px", border: "2px solid", textAlign: "left", padding: "10px" }}>
+									<img id="myImg" src={article.articleImg1} width="200" alt="Article Image" />
 								</td>
-								<td style={{ width: "20px" }}></td>
+								<td style={{ width: "150px", border: "2px solid", textAlign: "left", padding: "10px" }}>
+									<img id="myImg" src={article.articleImg2} width="200" alt="Article Image" />
+								</td>
+								<td style={{ width: "150px", border: "2px solid", textAlign: "left", padding: "10px" }}>
+									<img id="myImg" src={article.articleImg3} width="200" alt="Article Image" />
+								</td>
 								<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
-									<div key={article.id} style={{ marginBottom: "20px" }}>
+									<div key={article.articleno} style={{ marginBottom: "20px" }}>
 										<Link
 											to={`/details/${article.articleno}`}
 											style={{
@@ -172,7 +177,6 @@ const ArticleDetail = ({ language }) => {
 											<b>{article.name}</b>
 										</Link>
 									</div>
-									<br />
 									<span style={{ fontSize: "10px", letterSpacing: "normal", position: "relative", top: "0px" }}>
 										<b>Article No: {article.articleno}</b>
 									</span>
