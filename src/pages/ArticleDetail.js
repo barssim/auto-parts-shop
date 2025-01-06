@@ -9,7 +9,7 @@ import { manifacturerWithModels } from "../selectArticleOptions.js"
 import { manifacturers } from "../selectArticleOptions.js"
 import { categories } from "../selectArticleOptions.js"
 
-const ArticleDetail = ({ language }) => {
+const ArticleDetail = ({ language , addToCart }) => {
 	const content = language === "fr" ? fr : ar;
 	const { articleno } = useParams();
 	const [article, setArticle] = useState(null);
@@ -19,6 +19,8 @@ const ArticleDetail = ({ language }) => {
 	const [manifacturer, setManifacturer] = useState("");
 	const [model, setModel] = useState("");
 	const [category, setCategory] = useState("");
+	const [cart, setCart] = useState([]);
+	 
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -95,7 +97,6 @@ const ArticleDetail = ({ language }) => {
 	if (!article) {
 		return <h2>Article not found</h2>; // Handle cases where the article doesn't exist
 	}
-
 	return (
 		<div style={{ display: "flex" }}>
 			<div style={{ width: "15%", padding: "10px", textAlign: "left", borderRight: "1px solid #ccc" }}>
@@ -151,20 +152,17 @@ const ArticleDetail = ({ language }) => {
 			</div>
 			<div style={{ flex: 1, padding: "20px", textAlign: "center" }}>
 
-				<table style={{ borderCollapse: "separate", borderSpacing: "10px" }}>
+				<table style={{ borderCollapse: "separate" }}>
 					<tbody>
 						<React.Fragment key={article.articleno}>
 							<tr className="cell" style={{ backgroundColor: "#87CEEB" }}>
-								<td style={{ width: "150px", border: "2px solid", textAlign: "left", padding: "10px" }}>
-									<img id="myImg" src={article.articleImg1} width="200" alt="Article Image" />
+
+								<td style={{ width: "200px", border: "2px solid", textAlign: "left", padding: "10px" }}>
+									<img id="myImg" src={article.articleImg1} width="200" alt="" />
 								</td>
-								<td style={{ width: "150px", border: "2px solid", textAlign: "left", padding: "10px" }}>
-									<img id="myImg" src={article.articleImg2} width="200" alt="Article Image" />
-								</td>
-								<td style={{ width: "150px", border: "2px solid", textAlign: "left", padding: "10px" }}>
-									<img id="myImg" src={article.articleImg3} width="200" alt="Article Image" />
-								</td>
-								<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
+
+
+								<td style={{ verticalAlign: "top", width: "200px", textAlign: "left" }}>
 									<div key={article.articleno} style={{ marginBottom: "20px" }}>
 										<Link
 											to={`/details/${article.articleno}`}
@@ -184,7 +182,8 @@ const ArticleDetail = ({ language }) => {
 									<br />
 									<h4>{article.price} DH</h4>
 								</td>
-								<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
+
+								<td style={{ verticalAlign: "top",width: "800px", textAlign: "left" }}>
 									<div>
 										<span
 											style={{
@@ -214,16 +213,35 @@ const ArticleDetail = ({ language }) => {
 											readOnly
 										/>
 									</div>
-
 								</td>
 							</tr>
-
 						</React.Fragment>
 					</tbody>
 				</table>
+				<table style={{ borderCollapse: "separate" }}>
+					<tbody>
+						<tr className="cell" style={{ backgroundColor: "#87CEEB", borderSpacing: "2px" }}>
+							<td style={{ width: "400px", border: "2px solid", textAlign: "left", padding: "10px" }}>
+								<img id="myImg" src={article.articleImg1} width="400" alt="" />
+							</td>
+							<td style={{ width: "400px", border: "2px solid", textAlign: "left", padding: "10px" }}>
+								<img id="myImg" src={article.articleImg2} width="400" alt="" />
+							</td>
+							<td style={{ width: "400px", border: "2px solid", textAlign: "left", padding: "10px" }}>
+								<img id="myImg" src={article.articleImg3} width="400" alt="" />
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+				<ul>
+            <button className="buttonStyle" onClick={() => addToCart(article)}>Ajouter au panier</button>
+      </ul>
 			</div>
 		</div>
 	);
+	
+	
 }
 
 export default ArticleDetail;

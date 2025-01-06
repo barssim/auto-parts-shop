@@ -2,9 +2,12 @@ import React from 'react';
 import fr from "../locales/header/fr.json";
 import ar from "../locales/header/ar.json";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 
-const Header = ({ language, toggleLanguage }) => {
+const Header = ({ language, toggleLanguage, cartItemCount }) => {
 	const content = language === "fr" ? fr : ar;
+
+	const navigate = useNavigate();
 	return (
 		<header
 			style={{
@@ -37,7 +40,54 @@ const Header = ({ language, toggleLanguage }) => {
 			</nav>
 
 			{/* Action Buttons */}
-			<div style={{ display: "flex", gap: "10px" }}>
+			<div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+				{/* Shopping Cart */}
+				<div>
+					<button
+						style={{
+							position: "relative",
+							padding: "20px 20px",
+							backgroundColor: "#FFA500",
+							color: "white",
+							border: "none",
+							borderRadius: "5px",
+							cursor: "pointer",
+							backgroundImage: `url("../images/panier.png")`, // Set the background image
+							backgroundSize: "cover", // Ensure the image scales to fit the button
+							backgroundPosition: "left center", // Position the image to the left
+							backgroundRepeat: "no-repeat", // Prevent the image from repeating
+							display: "flex",
+							alignItems: "center",
+							justifyContent: "center",
+							paddingLeft: "30px", // Adjust padding to prevent text overlapping with the image
+						}}
+						onClick={() => navigate("/cart")}
+					>
+						{/* Badge for item count */}
+						{cartItemCount > 0 && (
+							<span
+								style={{
+									position: "absolute",
+									top: 0,
+									right: 0,
+									backgroundColor: "red",
+									color: "white",
+									borderRadius: "50%",
+									width: "18px",
+									height: "18px",
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									fontSize: "12px",
+									fontWeight: "bold",
+								}}
+							>
+								{cartItemCount}
+							</span>
+						)}
+					</button>
+				</div>
+
 				<button className="buttonStyle"
 					onClick={() => (window.location.href = "/login")}
 				>

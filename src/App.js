@@ -8,6 +8,7 @@ import About from './pages/About';
 import Login from './pages/Login';
 import CommonSearchNew from './pages/CommonSearchNew';
 import CommenSearchOld from './pages/CommonSearchOld';
+import CartPage from './pages/CartPage';
 import Inscription from './pages/Inscription';
 import Contact from './pages/Contact';
 import fr from "./locales/fr.json";
@@ -18,13 +19,16 @@ import ArticleDetail from './pages/ArticleDetail'; // Component for the article 
 function App() {
 	const [language, setLanguage] = useState("fr"); // Track current language
 	const content = language === "fr" ? fr : ar;
-
+	const [cart, setCart] = useState([]);
+const addToCart = (item) => {
+    setCart((prev) => [...prev, item]);
+  };
 	const toggleLanguage = () => {
 		setLanguage((prevLang) => (prevLang === "fr" ? "ar" : "fr"));
 	};
 	return (
 		<Router>
-			<Header language={language} toggleLanguage={toggleLanguage} />
+			<Header language={language} toggleLanguage={toggleLanguage} cartItemCount={cart.length || 0}/>;
 			<div style={{ display: "flex", alignItems: "center" }}>
 				{/* Left Menu */}
 				<div style={{ width: "15%", padding: "10px", textAlign: "left", borderRight: "1px solid #ccc" }}>
@@ -71,7 +75,8 @@ function App() {
 				<Route path="/inscription" element={<Inscription language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchNew" element={<CommonSearchNew language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchOld" element={<CommenSearchOld language={language} toggleLanguage={toggleLanguage} />} />
-				<Route path="/details/:articleno" element={<ArticleDetail language={language} toggleLanguage={toggleLanguage} />} />
+				<Route path="/details/:articleno" element={<ArticleDetail addToCart={addToCart} language={language} toggleLanguage={toggleLanguage} />} />
+				<Route path="/cart" element={<CartPage cart={cart}/>} />
 			</Routes>
 			<Footer language={language} toggleLanguage={toggleLanguage} />
 		</Router>
