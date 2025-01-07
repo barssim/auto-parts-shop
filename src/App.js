@@ -1,6 +1,7 @@
 // src/App.js
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState } from "react";
+import { useEffect } from "react";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -19,16 +20,20 @@ import ArticleDetail from './pages/ArticleDetail'; // Component for the article 
 function App() {
 	const [language, setLanguage] = useState("fr"); // Track current language
 	const content = language === "fr" ? fr : ar;
-	const [cart, setCart] = useState([]);
-const addToCart = (item) => {
-    setCart((prev) => [...prev, item]);
-  };
+	const [cart, setCart] = useState(() => {
+		// Retrieve the cart from local storage when the component loads
+		const savedCart = localStorage.getItem("cart");
+		return savedCart ? JSON.parse(savedCart) : [];
+	});
+	useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 	const toggleLanguage = () => {
 		setLanguage((prevLang) => (prevLang === "fr" ? "ar" : "fr"));
 	};
 	return (
 		<Router>
-			<Header language={language} toggleLanguage={toggleLanguage} cartItemCount={cart.length || 0}/>;
+			<Header language={language} toggleLanguage={toggleLanguage} cartItemCount={cart.length || 0} />;
 			<div style={{ display: "flex", alignItems: "center" }}>
 				{/* Left Menu */}
 				<div style={{ width: "15%", padding: "10px", textAlign: "left", borderRight: "1px solid #ccc" }}>
@@ -75,8 +80,8 @@ const addToCart = (item) => {
 				<Route path="/inscription" element={<Inscription language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchNew" element={<CommonSearchNew language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchOld" element={<CommenSearchOld language={language} toggleLanguage={toggleLanguage} />} />
-				<Route path="/details/:articleno" element={<ArticleDetail addToCart={addToCart} language={language} toggleLanguage={toggleLanguage} />} />
-				<Route path="/cart" element={<CartPage cart={cart}/>} />
+				<Route path="/details/:articleno" element={<ArticleDetail language={language} toggleLanguage={toggleLanguage} />} />
+				<Route path="/cart" element={<CartPage cart={cart} />} />
 			</Routes>
 			<Footer language={language} toggleLanguage={toggleLanguage} />
 		</Router>

@@ -9,7 +9,7 @@ import { manifacturerWithModels } from "../selectArticleOptions.js"
 import { manifacturers } from "../selectArticleOptions.js"
 import { categories } from "../selectArticleOptions.js"
 
-const ArticleDetail = ({ language , addToCart }) => {
+const ArticleDetail = ({ language }) => {
 	const content = language === "fr" ? fr : ar;
 	const { articleno } = useParams();
 	const [article, setArticle] = useState(null);
@@ -19,9 +19,22 @@ const ArticleDetail = ({ language , addToCart }) => {
 	const [manifacturer, setManifacturer] = useState("");
 	const [model, setModel] = useState("");
 	const [category, setCategory] = useState("");
-	const [cart, setCart] = useState([]);
-	 
+	const [cart, setCart] = useState(() => {
+		// Retrieve the cart from local storage when the component loads
+		const savedCart = localStorage.getItem("cart");
+		return savedCart ? JSON.parse(savedCart) : [];
+	});
 
+	// Save cart to local storage whenever it changes
+	useEffect(() => {
+		localStorage.setItem("cart", JSON.stringify(cart));
+	}, [cart]);
+
+
+	const addToCart = (item) => {
+		setCart((prevCart) => [...prevCart, item]);
+	};
+	
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -183,7 +196,7 @@ const ArticleDetail = ({ language , addToCart }) => {
 									<h4>{article.price} DH</h4>
 								</td>
 
-								<td style={{ verticalAlign: "top",width: "800px", textAlign: "left" }}>
+								<td style={{ verticalAlign: "top", width: "800px", textAlign: "left" }}>
 									<div>
 										<span
 											style={{
@@ -234,14 +247,12 @@ const ArticleDetail = ({ language , addToCart }) => {
 
 					</tbody>
 				</table>
-				<ul>
-            <button className="buttonStyle" onClick={() => addToCart(article)}>Ajouter au panier</button>
-      </ul>
+				<button className="buttonStyle" onClick={() => addToCart(article)}>Ajouter au panier</button>
 			</div>
 		</div>
 	);
-	
-	
+
+
 }
 
 export default ArticleDetail;
