@@ -106,7 +106,7 @@ const CommonSearchOld = ({ language }) => {
 								))}
 						</select>
 					</div>
-					<button type="submit">{content.search}</button>
+					<button className="buttonStyle" type="submit">{content.search}</button>
 				</form>
 				{error && (
 					<div>

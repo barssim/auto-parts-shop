@@ -16,7 +16,8 @@
 "register":"register",
 "confirmPassword":"Confirmez le mot de passe",
 "surname":"nom de famille",
-"firstname":"Prénom"
+"firstname":"Prénom",
+"logout": "Se deconnecter"
 
 
 

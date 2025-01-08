@@ -42,8 +42,8 @@
 	"type":  "Type",
 	"category":  "Catégorie de pièce",
 	"manifacturer":  "Marque de vehicule",
-	"model":  "Modèl de vehicule",
-	
+	"model":  "Modèl de vehicule",	
+	"enter": "Entrer",	
 	"services": "Services",
 	"not_possible_to_change_reserved_article":  "Vous n'avez pas la possibilit&eacute de changer une pi&egravece d&eacutej&agrave r&eacuteserv&eacute.",
 	"rigths_reserved": "Tous droits réservés."

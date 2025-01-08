@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
+import Logout from './pages/Logout';
 import CommonSearchNew from './pages/CommonSearchNew';
 import CommenSearchOld from './pages/CommonSearchOld';
 import CartPage from './pages/CartPage';
@@ -77,6 +78,7 @@ function App() {
 				<Route path="/about" element={<About language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/contact" element={<Contact language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/login" element={<Login language={language} toggleLanguage={toggleLanguage} />} />
+				<Route path="/logout" element={<Logout language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/inscription" element={<Inscription language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchNew" element={<CommonSearchNew language={language} toggleLanguage={toggleLanguage} />} />
 				<Route path="/commonSearchOld" element={<CommenSearchOld language={language} toggleLanguage={toggleLanguage} />} />

@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 const Header = ({ language, toggleLanguage, cartItemCount }) => {
 	const content = language === "fr" ? fr : ar;
-
 	const navigate = useNavigate();
+	const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+	const loggedIn = localStorage.getItem("LoggedIn");
 	return (
 		<header
 			style={{
@@ -88,17 +89,22 @@ const Header = ({ language, toggleLanguage, cartItemCount }) => {
 					</button>
 				</div>
 
-				<button className="buttonStyle"
-					onClick={() => (window.location.href = "/login")}
-				>
-					{content.login}
+				{isLoggedIn && (
+					<button className="inactiveButton">
+						Welcome, {loggedIn} {/* Display welcome message styled as an inactive button */}
+					</button>
+				)}
+				<button className="buttonStyle" onClick={() => (window.location.href = isLoggedIn ? "/logout" : "/login")}>
+					{isLoggedIn ? content.logout : content.login}
 				</button>
-				<button
-					className="buttonStyle"
-					onClick={() => (window.location.href = "/inscription")}
-				>
-					{content.inscription}
-				</button>
+				{!isLoggedIn && (
+					<button
+						className="buttonStyle"
+						onClick={() => (window.location.href = "/inscription")}
+					>
+						{content.inscription}
+					</button>
+				)}
 				<button
 					className="language-toggle"
 					onClick={toggleLanguage}
