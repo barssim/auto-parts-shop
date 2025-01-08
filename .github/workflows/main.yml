@@ -1,4 +1,4 @@
-name : Build & Deploy articleDiscove app
+name : Build & Deploy auto_parts_shop app
 
 on:
   push:
